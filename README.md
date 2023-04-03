@@ -1,7 +1,7 @@
 # BeCreator
 Platform to provide tools content creation, analyze and monetization for experienced influencers as well as small firms willing to establish their online community and mark their digital presence.
 
-# Features 
+## Features 
 * Raise an equity based fund for your favourite creator.
 * AI based content recommender for those confused to choose their domain.
 * Automated tools for creator to analayze his social handles.
