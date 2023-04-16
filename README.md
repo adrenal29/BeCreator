@@ -14,3 +14,5 @@ AMD instance used for node js server:
 
 ![Alt text](./ss/gcp1.png)
 
+
+![Alt text](./ss/gcp2.png)
