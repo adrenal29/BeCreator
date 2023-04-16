@@ -6,7 +6,7 @@ Platform to provide tools for content creation, analyze and monetization for exp
 * AI based content recommender for those confused to choose their domain.
 * Automated tools for creator to analayze his social handles.
 
-Current state: Frontend development going on
+
 
 [![Screenshot-2023-04-03-215915.jpg](https://i.postimg.cc/zDg1Fp7g/Screenshot-2023-04-03-215915.jpg)](https://postimg.cc/V5mTYq3f)
 
