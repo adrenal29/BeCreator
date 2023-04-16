@@ -12,4 +12,5 @@ Current state: Frontend development going on
 
 AMD instance used for node js server:
 
+![Alt text](./ss/gcp1.png)
 
