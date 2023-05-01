@@ -31,6 +31,9 @@ app.use("/api/users", userRoute)
 app.use("/api/auth", authRoute)
 app.use("/api/gigs",gigRoute)
 
+app.get("/server/check",(req,res)=>{
+    res.send("h")
+})
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
     const errorMessage = err.message || "Something went wrong!";
