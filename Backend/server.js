@@ -32,7 +32,7 @@ app.use("/api/auth", authRoute)
 app.use("/api/gigs",gigRoute)
 
 app.get("/server/check",(req,res)=>{
-    res.send("h")
+    res.send("Server working")
 })
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
