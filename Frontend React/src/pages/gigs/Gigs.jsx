@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import { GigCard } from '../../components/GigCard/GigCard'
 import { gigs } from '../../data'
 import './gigs.scss'
@@ -9,6 +9,19 @@ export const Gigs = () => {
     setSort(type)
     setOpen(false)
   }
+  const [cData,setData]=useState([])
+  useEffect(()=>{
+      fetch('http://localhost:8800/api/gigs/?cat=music')
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          setData(data)
+       // logs the last 5 documents retrieved from the database
+      })
+      .catch(error => {
+          console.error(error);
+      });
+  },[])
   return (
     <div className='gigs'>
       <div className="container">
@@ -35,7 +48,7 @@ export const Gigs = () => {
         
         
         </div>
-        <div className="cards">  {gigs.map(gig=>(
+        <div className="cards">  {cData.map(gig=>(
             <GigCard key={gig.id} item={gig}/>
           ))}
         </div>
