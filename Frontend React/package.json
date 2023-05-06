@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
+    "axios": "^1.4.0",
+    "chart.js": "^4.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.1",
     "react-simply-carousel": "^8.5.5",
     "react-slick": "^0.29.0",
