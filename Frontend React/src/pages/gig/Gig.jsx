@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Gig.scss";
+import "./gig.scss";
 import ReactSimplyCarousel from "react-simply-carousel";
 
 export const Gig = () => {
