@@ -45,7 +45,6 @@ const GigSchema = new Schema(
     },
     shortDesc: {
       type: String,
-      required: true,
     },
     deliveryTime: {
       type: Number,

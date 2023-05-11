@@ -66,7 +66,7 @@ export const Navbar = () => {
         </div>
        
       </div>
-      { (active || pathname!=="/") && (
+      {/* { (active || pathname!=="/") && (
         <>
          <hr/>
         <div className="menu">
@@ -79,7 +79,7 @@ export const Navbar = () => {
           <Link to="" className="link" >Credit</Link>
         </div>
         </>
-      )}
+      )} */}
     </div>
   )
 }

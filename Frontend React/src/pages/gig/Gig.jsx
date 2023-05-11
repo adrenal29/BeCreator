@@ -1,19 +1,75 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./gig.scss";
 import ReactSimplyCarousel from "react-simply-carousel";
 
 export const Gig = () => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const queryParams = url.searchParams;
+    let id = queryParams.get("id")
+    console.log(id)
+    fetch('http://localhost:8800/api/gigs/single?id=' + id)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setData(data)
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+  }, [])
+
+  const handlePayment = async () => {
+    const response = await fetch('http://localhost:8800/api/payment/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: parseInt(data.price), // The amount to be charged in paisa
+        currency: 'INR', // The currency code
+        payment_capture: 1, // Whether to capture the payment immediately
+      }),
+    });
+    const { order_id } = await response.json();
+    const options = {
+      key: 'rzp_test_IG7UyFkck9IH0W',
+      amount: parseInt(data.price)*100, // The amount to be charged in paisa
+      currency: 'INR', // The currency code
+      name: 'beCreator', // The name of your company
+      description: 'Payment for your order', // The description of the payment
+      order_id, // The ID of the order returned by the server
+      handler: function (response) {
+        console.log('Payment successful!', response);
+      },
+      prefill: {
+        name: 'John Doe',
+        email: 'john@example.com',
+        contact: '9999999999',
+      }, // The default values for the user's name, email, and contact number
+      notes: {
+        address: 'Razorpay Corporate Office',
+      }, // Additional information to be sent to Razorpay
+      theme: {
+        color: '#F37254', // The color of the payment button
+      },
+    };
+    const razorpay = new window.Razorpay(options);
+    razorpay.open();
+  };
   return (
     <div className="gig">
       <div className="container">
         <div className="left">
           <span className="breadcrumbs">Linus Sebastian</span>
-          <h1>Bringing revolution in media industry</h1>
+          <h1>{data.desc}</h1>
           <div className="user">
             <img
               className="pp"
-              src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src={data.cover}
               alt=""
             />
             <span>Linus Sebastian</span>
@@ -26,80 +82,16 @@ export const Gig = () => {
               <span>5</span>
             </div>
           </div>
-          {/* 
-          <ReactSimplyCarousel
-            // activeSlideIndex={activeSlideIndex}
-            // onRequestChange={setActiveSlideIndex}
-            itemsToShow={1}
-            itemsToScroll={1}
-            forwardBtnProps={{
-              //here you can also pass className, or any other button element attributes
-              style: {
-                alignSelf: 'center',
-                background: 'black',
-                border: 'none',
-                borderRadius: '50%',
-                color: 'white',
-                cursor: 'pointer',
-                fontSize: '20px',
-                height: 30,
-                lineHeight: 1,
-                textAlign: 'center',
-                width: 30,
-              },
-              children: <span>{`>`}</span>,
-            }}
-            backwardBtnProps={{
-              //here you can also pass className, or any other button element attributes
-              style: {
-                alignSelf: 'center',
-                background: 'black',
-                border: 'none',
-                borderRadius: '50%',
-                color: 'white',
-                cursor: 'pointer',
-                fontSize: '20px',
-                height: 30,
-                lineHeight: 1,
-                textAlign: 'center',
-                width: 30,
-              },
-              children: <span>{`<`}</span>,
-            }}
-            responsiveProps={[
-              {
-                itemsToShow: 4,
-                itemsToScroll: 2,
-                minWidth: 768,
-              },
-            ]}
-            speed={400}
-            easing="linear"
-          >
-            <img
-              src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-
-
-          </ReactSimplyCarousel> */}
+  
           <h2>About This Creator Fund</h2>
           <p>
-          channel features a mix of tech reviews, tutorials, and news updates, covering a wide range of topics in the tech industry. He is known for his in-depth knowledge of computer hardware and his entertaining and informative presentation style. In addition to his work on YouTube, Sebastian is also involved in the production of several other tech-related shows and podcasts through Linus Media Group.
+            channel features a mix of tech reviews, tutorials, and news updates, covering a wide range of topics in the tech industry. He is known for his in-depth knowledge of computer hardware and his entertaining and informative presentation style. In addition to his work on YouTube, Sebastian is also involved in the production of several other tech-related shows and podcasts through Linus Media Group.
           </p>
           <div className="seller">
             <h2>About The Creator</h2>
             <div className="user">
               <img
-                src="https://s.yimg.com/fz/api/res/1.2/MgYwz1PpN3hmxXMkcLP0tQ--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTI2MDtxPTgwO3c9MjI0/https://s.yimg.com/zb/imgv1/12b7b839-6f33-3db9-a7af-3592acf85983/t_500x300"
+                src={data.cover} 
                 alt=""
               />
               <div className="info">
@@ -112,7 +104,7 @@ export const Gig = () => {
                   <img src="/img/star.png" alt="" />
                   <span>5</span>
                 </div>
-                <button>Contact Me</button>
+                {/* <button>Contact Me</button> */}
               </div>
             </div>
             <div className="box">
@@ -140,7 +132,7 @@ export const Gig = () => {
               </div>
               <hr />
               <p>
-              Sebastian's channel features a mix of tech reviews, tutorials, and news updates, covering a wide range of topics in the tech industry. He is known for his in-depth knowledge of computer hardware and his entertaining and informative presentation style. In addition to his wor
+                Sebastian's channel features a mix of tech reviews, tutorials, and news updates, covering a wide range of topics in the tech industry. He is known for his in-depth knowledge of computer hardware and his entertaining and informative presentation style. In addition to his wor
               </p>
             </div>
           </div>
@@ -278,10 +270,10 @@ export const Gig = () => {
         <div className="right">
           <div className="price">
             <h3>Funds raising</h3>
-            <h2>$ 6000</h2>
+            <h2>$ {data.price}</h2>
           </div>
           <p>
-          Founder of Linus Media Group, a media company that creates content focused on technology.
+            {data.shortDesc}
           </p>
           <div className="details">
             <div className="item">
@@ -311,7 +303,7 @@ export const Gig = () => {
               <span>Additional design</span>
             </div>
           </div>
-          <button>Continue</button>
+          <button onClick={handlePayment}>Continue</button>
         </div>
       </div>
     </div>

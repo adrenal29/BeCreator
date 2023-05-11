@@ -1,6 +1,7 @@
 import { Navbar } from "./components/navbar/Navbar"
 import { Footer } from "./components/footer/Footer";
 import './app.scss'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,6 +23,10 @@ import { Message } from "./pages/message/Message";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Business from "./pages/business/Business";
+import League from "./pages/CreatorLeague/League";
+import Raise from "./pages/add/Raise";
+import Create from "./components/League/Create";
 function App() {
   const queryClient = new QueryClient();
   const Layout=()=>{
@@ -49,8 +54,12 @@ function App() {
         element:<Gigs/>
         },
         {
-        path:'/gig/:id',
+        path:'/gig',
         element:<Gig/>
+        },
+        {
+          path:'/create',
+          element:<Create/>
         },
         {
         path:'/orders',
@@ -74,17 +83,25 @@ function App() {
         },
         {
           path:'/login',
-          element:<Login/>
+          element:
+          <GoogleOAuthProvider clientId='830258454445-nouoa39un4ikve00p1b0p0odbo0hgmd1.apps.googleusercontent.com'><Login/></GoogleOAuthProvider>
         },
         {
           path:'/register',
           element:<Register/>
+        },
+        {
+          path:'/business',
+          element:<Business/>
         }
       ]
     },
     {
       path:"/dashboard",
       element:<Dashboard/>
+    },{
+      path:"/league",
+      element:<League/>
     }
   ]);
 

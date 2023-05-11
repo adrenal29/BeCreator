@@ -2,21 +2,44 @@ import React from 'react';
 import { FaHome, FaChartLine, FaCalendarAlt, FaCog } from 'react-icons/fa';
 import { Navbar } from '../navbar/Navbar';
 import './dashboard.css';
-import  Pfm from '../Pfm/Pfm'
+import Pfm from '../Pfm/Pfm'
 import Credit from '../CreditCard/Credit';
 import Analytics from '../Analytics/Analytics';
-import Post from '../Post/Post';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Brand from '../Brand/Brand';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+    const [info,setInfo]=useState([]);
+    const [subscribers,setSubscribers]=useState(0);
+    const [views,setViews]=useState(0);
+    const [revenue,setRevenue]=useState(1000);
+    const apiKey = 'AIzaSyCA1TMCgzzGYcNwEOGmQJ9C-R-DJvalCAY';
+
+    // Specify the username of the channel you want to retrieve data for
+    const channelid = 'UC6QEol2rdaqKce4VcTZ2JEg';
+    useEffect(() => {
+        // Make a request to the YouTube API to retrieve the channel data for the specified username
+        fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelid}&key=${apiKey}`, {
+            method: 'GET'
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setInfo(data.items[0])
+                setSubscribers(data.items[0].statistics.subscriberCount)
+                setViews(data.items[0].statistics.viewCount)
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, [])
     const [activeTab, setActiveTab] = React.useState('home');
-
+    console.log(props.auth)
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
 
-    const subscribers = 10000;
-    const views = 1000000;
-    const revenue = 50000;
+    
 
     const [selectedDate, setSelectedDate] = React.useState(new Date());
 
@@ -40,7 +63,6 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            <Navbar />
             <div className="tabs">
                 <div
                     className={`tab ${activeTab === 'home' ? 'active' : ''}`}
@@ -71,11 +93,11 @@ const Dashboard = () => {
                     <span>Credit Card</span>
                 </div>
                 <div
-                    className={`tab ${activeTab === 'schedule' ? 'active' : ''}`}
-                    onClick={() => handleTabClick('schedule')}
+                    className={`tab ${activeTab === 'brand' ? 'active' : ''}`}
+                    onClick={() => handleTabClick('brand')}
                 >
                     <FaCalendarAlt />
-                    <span>Schedule</span>
+                    <span>Brand Deals</span>
                 </div>
                 <div
                     className={`tab ${activeTab === 'settings' ? 'active' : ''}`}
@@ -101,7 +123,7 @@ const Dashboard = () => {
                             </div>
                             <div className="stat">
                                 <h3>Monthly Revenue</h3>
-                                <span className="stat-value">${revenue}</span>
+                                <span className="stat-value">{revenue}</span>
                             </div>
                         </div>
                         <div className="chart-container">
@@ -113,17 +135,17 @@ const Dashboard = () => {
                 {activeTab === 'pfm' && (
                     <Pfm />
                 )}
-                 {activeTab === 'card' && (
-                    <Credit/>
+                {activeTab === 'card' && (
+                    <Credit />
                 )}
                 {activeTab === 'analytics' && (
                     <div className="analytics-tab">
-                       <Analytics/>
+                        <Analytics />
                     </div>
                 )}
-                {activeTab === 'schedule' && (
+                {activeTab === 'brand' && (
                     <div className="schedule-tab">
-                       <Post/>
+                        <Brand/>
                     </div>
                 )}
                 {activeTab === 'settings' && (

@@ -16,7 +16,7 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    img:{
+    cover:{
         type:String,
         required:false
     },
@@ -35,6 +35,9 @@ const userSchema = new Schema({
     isSeller:{
         type:Boolean,
         default:false
+    },
+    cat:{
+        type:String,
     },
 },{
     timestamps:true

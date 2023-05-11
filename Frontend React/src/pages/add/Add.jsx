@@ -7,6 +7,7 @@ import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
+  const [step, setStep] = useState(1);
   const [singleFile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -65,64 +66,69 @@ const Add = () => {
     // navigate("/mygigs")
   };
 
-  return (
-    <div className="add">
-      <div className="container">
-        <h1>Start a new funding campaign</h1>
-        <div className="sections">
-          <div className="info">
-            <label htmlFor="">Title</label>
+  const renderStep1 = () => {
+    return (
+
+      <div className="info">
+        <h3>Raise Investment</h3>
+        <label htmlFor="">Title</label>
+        <input
+          type="text"
+          name="title"
+          placeholder="e.g. I will do something I'm really good at"
+          onChange={handleChange}
+        />
+        <label htmlFor="">Category/Niche of your content</label>
+        <select name="cat" id="cat" onChange={handleChange}>
+          <option value="design">Design</option>
+          <option value="web">Web Development</option>
+          <option value="animation">Animation</option>
+          <option value="music">Music</option>
+        </select>
+        <div className="images">
+          <div className="imagesInputs">
+            <label htmlFor="">Cover Image</label>
             <input
-              type="text"
-              name="title"
-              placeholder="e.g. I will do something I'm really good at"
-              onChange={handleChange}
+              type="file"
+              onChange={(e) => setSingleFile(e.target.files[0])}
             />
-            <label htmlFor="">Category/Niche of your content</label>
-            <select name="cat" id="cat" onChange={handleChange}>
-              <option value="design">Design</option>
-              <option value="web">Web Development</option>
-              <option value="animation">Animation</option>
-              <option value="music">Music</option>
-            </select>
-            <div className="images">
-              <div className="imagesInputs">
-                <label htmlFor="">Cover Image</label>
-                <input
-                  type="file"
-                  onChange={(e) => setSingleFile(e.target.files[0])}
-                />
-                <label htmlFor="">Upload Images</label>
-                <input
-                  type="file"
-                  multiple
-                  onChange={(e) => setFiles(e.target.files)}
-                />
-              </div>
-              <button onClick={handleUpload}>
-                {uploading ? "uploading" : "Upload"}
-              </button>
-            </div>
-            <label htmlFor="">Something to say for potential fan investors</label>
-            <textarea
-              name="desc"
-              id=""
-              placeholder="Brief descriptions to introduce your service to customers"
-              cols="0"
-              rows="16"
-              onChange={handleChange}
-            ></textarea>
-            <button onClick={handleSubmit}>Create</button>
+            <label htmlFor="">Upload Images</label>
+            <input
+              type="file"
+              multiple
+              onChange={(e) => setFiles(e.target.files)}
+            />
           </div>
-          <div className="details">
-            <label htmlFor="">Channel Title</label>
-            <input
-              type="text"
-              name="shortTitle"
-              placeholder="e.g. One-page web design"
-              onChange={handleChange}
-            />
-            <label htmlFor="">Short Description</label>
+          <button onClick={handleUpload}>
+            {uploading ? "uploading" : "Upload"}
+          </button>
+        </div>
+        <label htmlFor="">Something to say for potential fan investors</label>
+        <textarea
+          name="desc"
+          id=""
+          placeholder="Brief descriptions to introduce your service to customers"
+          cols="0"
+          rows="10"
+          onChange={handleChange}
+        ></textarea>
+        <button onClick={() => setStep(step + 1)}>Next</button>
+      </div>
+    );
+  }
+
+  const renderStep2 = () => {
+    return (
+      <div className="details">
+        <h3>Raise Investment</h3>
+        <label htmlFor="">Channel Title</label>
+        <input
+          type="text"
+          name="shortTitle"
+          placeholder="e.g. One-page web design"
+          onChange={handleChange}
+        />
+        {/* <label htmlFor="">Short Description</label>
             <textarea
               name="shortDesc"
               onChange={handleChange}
@@ -130,41 +136,153 @@ const Add = () => {
               placeholder="Short description of your service"
               cols="30"
               rows="10"
-            ></textarea>
-            <label htmlFor="">Vesting period (in months)</label>
-            <input type="number" name="deliveryTime" onChange={handleChange} />
-            <label htmlFor="">Target revenue </label>
-            <input
-              type="number"
-              name="revisionNumber"
-              onChange={handleChange}
-            />
-            <label htmlFor="">Add terms for return to investors</label>
-            <form action="" className="add" onSubmit={handleFeature}>
-              <input type="text" placeholder="e.g. page design" />
-              <button type="submit">add</button>
-            </form>
-            <div className="addedFeatures">
-              {state?.features?.map((f) => (
-                <div className="item" key={f}>
-                  <button
-                    onClick={() =>
-                      dispatch({ type: "REMOVE_FEATURE", payload: f })
-                    }
-                  >
-                    {f}
-                    <span>X</span>
-                  </button>
-                </div>
-              ))}
+            ></textarea> */}
+        <label htmlFor="">Vesting period (in months)</label>
+        <input type="number" name="deliveryTime" onChange={handleChange} />
+        <label htmlFor="">Target revenue </label>
+        <input
+          type="number"
+          name="revisionNumber"
+          onChange={handleChange}
+        />
+        <label htmlFor="">Add terms for return to investors</label>
+        <form action="" className="add" onSubmit={handleFeature}>
+          <input type="text" placeholder="e.g. page design" />
+          <button type="submit">add</button>
+        </form>
+        <div className="addedFeatures">
+          {state?.features?.map((f) => (
+            <div className="item" key={f}>
+              <button
+                onClick={() =>
+                  dispatch({ type: "REMOVE_FEATURE", payload: f })
+                }
+              >
+                {f}
+                <span>X</span>
+              </button>
             </div>
-            <label htmlFor="">Amount Raising</label>
-            <input type="number" onChange={handleChange} name="price" />
-          </div>
+          ))}
         </div>
+        <label htmlFor="">Amount Raising</label>
+        <input type="number" onChange={handleChange} name="price" />
+        <button onClick={() => setStep(step - 1)}>Back</button>
+        <button onClick={handleSubmit}>Create</button>
       </div>
-    </div>
-  );
-};
+    )
+  }
 
+
+  //   return (
+  //     <div className="add">
+  //       <div className="container">
+  //         <h1>Start a new funding campaign</h1>
+
+  //         <div className="sections">
+  //           <div className="info">
+  //             <label htmlFor="">Title</label>
+  //             <input
+  //               type="text"
+  //               name="title"
+  //               placeholder="e.g. I will do something I'm really good at"
+  //               onChange={handleChange}
+  //             />
+  //             <label htmlFor="">Category/Niche of your content</label>
+  //             <select name="cat" id="cat" onChange={handleChange}>
+  //               <option value="design">Design</option>
+  //               <option value="web">Web Development</option>
+  //               <option value="animation">Animation</option>
+  //               <option value="music">Music</option>
+  //             </select>
+  //             <div className="images">
+  //               <div className="imagesInputs">
+  //                 <label htmlFor="">Cover Image</label>
+  //                 <input
+  //                   type="file"
+  //                   onChange={(e) => setSingleFile(e.target.files[0])}
+  //                 />
+  //                 <label htmlFor="">Upload Images</label>
+  //                 <input
+  //                   type="file"
+  //                   multiple
+  //                   onChange={(e) => setFiles(e.target.files)}
+  //                 />
+  //               </div>
+  //               <button onClick={handleUpload}>
+  //                 {uploading ? "uploading" : "Upload"}
+  //               </button>
+  //             </div>
+  //             <label htmlFor="">Something to say for potential fan investors</label>
+  //             <textarea
+  //               name="desc"
+  //               id=""
+  //               placeholder="Brief descriptions to introduce your service to customers"
+  //               cols="0"
+  //               rows="16"
+  //               onChange={handleChange}
+  //             ></textarea>
+  //             <button onClick={handleSubmit}>Create</button>
+  //           </div>
+  //           <div className="details">
+  //             <label htmlFor="">Channel Title</label>
+  //             <input
+  //               type="text"
+  //               name="shortTitle"
+  //               placeholder="e.g. One-page web design"
+  //               onChange={handleChange}
+  //             />
+  //             <label htmlFor="">Short Description</label>
+  //             <textarea
+  //               name="shortDesc"
+  //               onChange={handleChange}
+  //               id=""
+  //               placeholder="Short description of your service"
+  //               cols="30"
+  //               rows="10"
+  //             ></textarea>
+  //             <label htmlFor="">Vesting period (in months)</label>
+  //             <input type="number" name="deliveryTime" onChange={handleChange} />
+  //             <label htmlFor="">Target revenue </label>
+  //             <input
+  //               type="number"
+  //               name="revisionNumber"
+  //               onChange={handleChange}
+  //             />
+  //             <label htmlFor="">Add terms for return to investors</label>
+  //             <form action="" className="add" onSubmit={handleFeature}>
+  //               <input type="text" placeholder="e.g. page design" />
+  //               <button type="submit">add</button>
+  //             </form>
+  //             <div className="addedFeatures">
+  //               {state?.features?.map((f) => (
+  //                 <div className="item" key={f}>
+  //                   <button
+  //                     onClick={() =>
+  //                       dispatch({ type: "REMOVE_FEATURE", payload: f })
+  //                     }
+  //                   >
+  //                     {f}
+  //                     <span>X</span>
+  //                   </button>
+  //                 </div>
+  //               ))}
+  //             </div>
+  //             <label htmlFor="">Amount Raising</label>
+  //             <input type="number" onChange={handleChange} name="price" />
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+  switch (step) {
+
+    case 1:
+      return renderStep1();
+    case 2:
+      return renderStep2();
+    default:
+      return null;
+  }
+}
 export default Add;
