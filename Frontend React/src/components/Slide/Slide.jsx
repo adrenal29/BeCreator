@@ -9,7 +9,7 @@ export const Slide = () => {
     const [cData,setData]=useState(cards)
     console.log(cards)
     useEffect(()=>{
-        fetch('http://localhost:8800/')
+        fetch('http://localhost:8800/api/users/latest/5')
         .then(response => response.json())
         .then(data => {
             console.log(data);

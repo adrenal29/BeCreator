@@ -44,7 +44,7 @@ const Create = () => {
     document.body.classList.remove('modal-open');
   }
   const getCreators = () => {
-    fetch('http://localhost:8800/api/league?cat=' + cat)
+    fetch('http://localhost:8800/api/gigs?cat=' + cat)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -68,10 +68,12 @@ const Create = () => {
       </div>
       <div className="creators">
         {cData.map(card => (
-          <>
+        
+            <div className='card'>
             <CatCard item={card} />
             <button className='add' onClick={() => { setTeam([...team,{userId:card.username,cover:card.cover}]); console.log(team);setSize(size+1) }}>Add to league </button>
-          </>
+            </div>
+  
         ))}
       </div>
       <button className='panelBtn' onClick={onOpenModal}>Start League Now</button>

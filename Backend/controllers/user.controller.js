@@ -15,3 +15,10 @@ export const getUser = async (req, res, next) => {
 
   res.status(200).send(user);
 };
+
+export const userDetails=async(req,res)=>{
+  console.log("workinf")
+  const query = { name: req.query.username};
+  const user=await User.findOne(query)
+   res.status(200).send(user)
+}

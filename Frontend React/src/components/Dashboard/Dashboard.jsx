@@ -8,6 +8,7 @@ import Analytics from '../Analytics/Analytics';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Brand from '../Brand/Brand';
+import Register from '../../pages/register/Register';
 
 const Dashboard = (props) => {
     const [info,setInfo]=useState([]);
@@ -63,6 +64,7 @@ const Dashboard = (props) => {
 
     return (
         <div className="dashboard">
+            <Navbar/>
             <div className="tabs">
                 <div
                     className={`tab ${activeTab === 'home' ? 'active' : ''}`}
@@ -149,38 +151,7 @@ const Dashboard = (props) => {
                     </div>
                 )}
                 {activeTab === 'settings' && (
-                    <div className="settings-tab">
-                        <h2>Settings</h2>
-                        <div className="settings-container">
-                            <h3>Notifications</h3>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="notifications"
-                                    checked={settings.notifications}
-                                    onChange={handleSettingsChange}
-                                />
-                                Send me notifications
-                            </label>
-                            <h3>Newsletter</h3>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="newsletter"
-                                    checked={
-                                        settings.newsletter
-                                    }
-                                    onChange={handleSettingsChange}
-                                />
-                                Subscribe to newsletter
-                            </label>
-                            <h3>Marketing</h3>
-                            <label>
-                                <input type="checkbox" name="marketing" checked={settings.marketing} onChange={handleSettingsChange} />
-                                Allow marketing emails
-                            </label>
-                        </div>
-                    </div>
+                    <Register/>
                 )}
             </div>
         </div>

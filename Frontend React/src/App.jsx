@@ -27,6 +27,7 @@ import Business from "./pages/business/Business";
 import League from "./pages/CreatorLeague/League";
 import Raise from "./pages/add/Raise";
 import Create from "./components/League/Create";
+import Signup from "./pages/signup/Signup";
 function App() {
   const queryClient = new QueryClient();
   const Layout=()=>{
@@ -89,6 +90,10 @@ function App() {
         {
           path:'/register',
           element:<Register/>
+        },
+        {
+          path:'/signup',
+          element:<Signup/>
         },
         {
           path:'/business',

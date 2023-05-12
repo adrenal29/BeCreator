@@ -2,15 +2,32 @@ import React, { useState, useEffect } from 'react'
 import { Link, useAsyncError } from 'react-router-dom'
 import { GigCard } from '../../components/GigCard/GigCard'
 import { gigs } from '../../data'
+import { useLocation } from "react-router-dom";
 import './gigs.scss'
 export const Gigs = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const cat= params.get("cat");
+  console.log(cat)
   const [open, setOpen] = useState("")
   const [sort, setSort] = useState(false)
   const [max, setMax] = useState(10000);
   const [min, setMin] = useState(0);
+  useEffect(()=>{
+    fetch('http://localhost:8800/api/gigs/?cat='+cat)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setData(data)
+        // logs the last 5 documents retrieved from the database
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  },[])
   const filter = () => {
     console.log(max)
-    fetch('http://localhost:8800/api/gigs/?cat=music&max=' + max+'&min='+min)
+    fetch('http://localhost:8800/api/gigs/?cat='+cat+'&max=' + max+'&min='+min)
       .then(response => response.json())
       .then(data => {
         console.log(data);

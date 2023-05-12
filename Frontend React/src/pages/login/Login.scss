@@ -1,5 +1,6 @@
 .login {
   display: flex;
+  margin-top: -2rem;
   align-items: center;
   justify-content: center;
 
@@ -24,6 +25,7 @@
     textarea {
       padding: 20px;
       border: 1px solid rgb(216, 214, 214);
+      outline: none;
     }
 
     button {
@@ -39,6 +41,16 @@
     span{
       color: red;
       font-size: 12px;
+    }
+    .new{
+      
+      .link{
+        text-decoration: none;
+        margin-left: 25%;
+        color: rgb(43, 92, 238);
+        font-size: 16px;
+        font-style: italic;
+      }
     }
   }
 }
