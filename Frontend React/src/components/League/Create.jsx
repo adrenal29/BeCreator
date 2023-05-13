@@ -17,9 +17,9 @@ const Create = () => {
   const[maxPlayer,setMax]=useState(0);
   const[startDate,setStart]=useState('');
   const[endDate,setEnd]=useState('');
-
+  const [user,setUser]=useState('')
   const createLeague=async(e)=>{
-    const [user,setUser]=useState('')
+    
     e.preventDefault();
     try {
         await newRequest.post("/league/create", {
