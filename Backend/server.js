@@ -18,7 +18,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:"http://34.131.71.8",credentials:true}));
+app.use(cors({origin:"https://645f45c4ef063b1b099ff170--splendid-manatee-4b591b.netlify.app/",credentials:true}));
 
 const connect = async () => {
     try {
