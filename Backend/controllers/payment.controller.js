@@ -1,15 +1,16 @@
 import Razorpay from 'razorpay'
 // import orders from 'razorpay/dist/types/orders';
-export const orderCreate = async (req, res)=> {
+import { MongoClient } from 'mongodb';
+export const orderCreate = async (req, res) => {
     try {
         const instance = new Razorpay({
             key_id: 'rzp_test_IG7UyFkck9IH0W',
             key_secret: '0tEWj4yJ7GVesX9suwtwmw4k'
         })
 
-        const { orderId, amount, payment_capture, currency } = req.body;
+        const { orderId, amount, payment_capture, currency} = req.body;
         const options = {
-            amount: parseInt(amount*100),
+            amount: parseInt(amount * 100),
             currency: currency,
             receipt: orderId,
             payment_capture: payment_capture

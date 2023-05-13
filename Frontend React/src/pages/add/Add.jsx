@@ -5,6 +5,7 @@ import upload from "../../utils/upload";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Add = () => {
   const [step, setStep] = useState(1);
@@ -12,8 +13,10 @@ const Add = () => {
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
 
-  const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
+  const currentUser=JSON.parse(localStorage.getItem("currentUser"));
+  let initialState={username:currentUser.username}
+ const [state, dispatch] = useReducer(gigReducer, initialState);
   const handleChange = (e) => {
     dispatch({
       type: "CHANGE_INPUT",
@@ -81,6 +84,9 @@ const Add = () => {
         <label htmlFor="">Category/Niche of your content</label>
         <select name="cat" id="cat" onChange={handleChange}>
           <option value="design">Design</option>
+          <option value="Health">Health</option>
+          <option value="Tech">Tech</option>
+          <option value="Style">Style</option>
           <option value="web">Web Development</option>
           <option value="animation">Animation</option>
           <option value="music">Music</option>
@@ -121,11 +127,11 @@ const Add = () => {
     return (
       <div className="details">
         <h3>Raise Investment</h3>
-        <label htmlFor="">Channel Title</label>
+        <label htmlFor="">Channel Id</label>
         <input
           type="text"
-          name="shortTitle"
-          placeholder="e.g. One-page web design"
+          name="channel"
+          placeholder="6382638"
           onChange={handleChange}
         />
         {/* <label htmlFor="">Short Description</label>
@@ -138,11 +144,11 @@ const Add = () => {
               rows="10"
             ></textarea> */}
         <label htmlFor="">Vesting period (in months)</label>
-        <input type="number" name="deliveryTime" onChange={handleChange} />
-        <label htmlFor="">Target revenue </label>
+        <input type="number" name="vestingTime" onChange={handleChange} />
+        <label htmlFor="">Average revenue(per month) </label>
         <input
           type="number"
-          name="revisionNumber"
+          name="revenue"
           onChange={handleChange}
         />
         <label htmlFor="">Add terms for return to investors</label>
@@ -164,8 +170,8 @@ const Add = () => {
             </div>
           ))}
         </div>
-        <label htmlFor="">Amount Raising</label>
-        <input type="number" onChange={handleChange} name="price" />
+        <label htmlFor="">Maximum investors</label>
+        <input type="number" onChange={handleChange} name="max" />
         <button onClick={() => setStep(step - 1)}>Back</button>
         <button onClick={handleSubmit}>Create</button>
       </div>

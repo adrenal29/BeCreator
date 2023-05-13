@@ -15,11 +15,11 @@ const Detail = (props) => {
                 <div className="info">
                     <div className="points">
                         <h5>Total Points</h5>
-                        <h4>20</h4>
+                        <h4>--</h4>
                     </div>
                     <div className="rank">
                         <h5>Overall Rank</h5>
-                        <h4>14/{props.limit}</h4>
+                        <h4>--/{props.limit}</h4>
                     </div>
                 </div>
             </div>

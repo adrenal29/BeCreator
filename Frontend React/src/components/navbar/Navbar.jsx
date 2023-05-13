@@ -11,28 +11,31 @@ export const Navbar = () => {
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   }
+  
   useEffect(() => {
     window.addEventListener("scroll", isActive)
     return () => {
       window.removeEventListener("scroll", isActive)
       const currentUser = JSON.parse(localStorage.getItem("currentUser"))
       console.log(currentUser)
+      // id=currentUser._id 
 
-      fetch('http://localhost:8800/api/users/'+currentUser._id, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log(data);
-          localStorage.getItem("currentUser",data)
-       // logs the last 5 documents retrieved from the database
-      })
-      .catch(error => {
-          console.error(error);
-      });
+      
+      // fetch('http://localhost:8800/api/users/'+id, {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //     console.log(data);
+      //     localStorage.getItem("currentUser",data)
+      //  // logs the last 5 documents retrieved from the database
+      // })
+      // .catch(error => {
+      //     console.error(error);
+      // });
     }
 
   }, [])
@@ -60,7 +63,7 @@ export const Navbar = () => {
           <span><Link to='/league' className='link'>League</Link></span>
           <span>English</span>
           <span><Link to='/login' className='opt'>Sign In</Link></span>
-          {!currentUser?.isCreator && <span>Become a Creator</span>}
+          {!currentUser?.isCreator && <span><Link to='/signup' className='link'>Become a Creator</Link></span>}
           {!currentUser && <button>Join</button>}
           {
             currentUser && (

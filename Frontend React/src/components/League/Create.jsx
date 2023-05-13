@@ -19,10 +19,11 @@ const Create = () => {
   const[endDate,setEnd]=useState('');
 
   const createLeague=async(e)=>{
+    const [user,setUser]=useState('')
     e.preventDefault();
     try {
         await newRequest.post("/league/create", {
-            userId:'test',
+            userId:user,
             name:name,
             type:type,
             maxPlayer:maxPlayer,
@@ -44,7 +45,7 @@ const Create = () => {
     document.body.classList.remove('modal-open');
   }
   const getCreators = () => {
-    fetch('http://localhost:8800/api/gigs?cat=' + cat)
+    fetch('http://34.131.221.158:8800/api/gigs?cat=' + cat)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -58,6 +59,8 @@ const Create = () => {
   useEffect(() => {
     getCreators();
     console.log(team)
+    let currentUser=JSON.parse(localStorage.getItem('currentUser'))
+    setUser(currentUser.username)
     
   }, [])
   return (

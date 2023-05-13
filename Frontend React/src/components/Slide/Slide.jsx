@@ -9,7 +9,7 @@ export const Slide = () => {
     const [cData,setData]=useState(cards)
     console.log(cards)
     useEffect(()=>{
-        fetch('http://localhost:8800/api/users/latest/5')
+        fetch('http://34.131.221.158:8800/api/users/latest/5')
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -83,7 +83,7 @@ export const Slide = () => {
                     {/* here you can also pass any other element attributes. Also, you can use your custom components as slides */}
                     {cData.map(card => (
 
-                        <CatCard item={card} />
+                        <CatCard item={card} className="panel" />
                        
                     ))}
 

@@ -4,11 +4,12 @@ import createError from "../utils/createError.js";
 import { MongoClient } from 'mongodb';
 
 export const createGig = async (req, res, next) => {
-  if (!req.isSeller)
-    return next(createError(403, "Only sellers can create a gig!"));
-
+  // if (!req.isSeller)
+  //   return next(createError(403, "Only sellers can create a gig!"));
+ console.log(req.body.username)
   const newGig = new Gig({
     userId: req.userId,
+    username:req.body.username,
     ...req.body,
   });
 
@@ -61,15 +62,15 @@ export const getGigs = async (req, res, next) => {
   }
 };
 
-export const fetchGigs=async(req,res)=>{
+export const fetchGigs = async (req, res) => {
   let collection;
   await MongoClient.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(client => {
-     collection = client.db('beCreator').collection('gigs');
-  })
-  .catch(err => {
-    console.error(err);
-  });
+    .then(client => {
+      collection = client.db('beCreator').collection('gigs');
+    })
+    .catch(err => {
+      console.error(err);
+    });
 
   collection.find().sort({ _id: -1 }).limit(5).toArray()
     .then(docs => {
@@ -79,4 +80,47 @@ export const fetchGigs=async(req,res)=>{
       console.error(err);
       res.status(500).send('Error retrieving last 5 data from database');
     });
+}
+
+export const updateGig = async (req, res) => {
+  let collection;
+  await MongoClient.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(client => {
+      collection = client.db('beCreator').collection('gigs');
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+  try {
+    // Add a new element to the array field
+    const result = await collection.updateOne(
+      { title: req.body.title },
+      { $push: { investors: req.body.username } }
+    ).then(doc => res.json(doc));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export const mygigs=async(req,res)=>{
+  let collection;
+  await MongoClient.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(client => {
+      collection = client.db('beCreator').collection('gigs');
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+    const filters={
+      username:req.query.username
+    }
+
+    try {
+      const gigs = await Gig.find(filters);
+      res.status(200).send(gigs);
+    } catch (err) {
+      next(err);
+    }
 }

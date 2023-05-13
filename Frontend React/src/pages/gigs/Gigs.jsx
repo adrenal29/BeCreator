@@ -14,7 +14,7 @@ export const Gigs = () => {
   const [max, setMax] = useState(10000);
   const [min, setMin] = useState(0);
   useEffect(()=>{
-    fetch('http://localhost:8800/api/gigs/?cat='+cat)
+    fetch('http://34.131.221.158:8800/api/gigs/?cat='+cat)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -27,7 +27,7 @@ export const Gigs = () => {
   },[])
   const filter = () => {
     console.log(max)
-    fetch('http://localhost:8800/api/gigs/?cat='+cat+'&max=' + max+'&min='+min)
+    fetch('http://34.131.221.158:8800/api/gigs/?cat='+cat+'&max=' + max+'&min='+min)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -45,22 +45,22 @@ export const Gigs = () => {
   }
   const [cData, setData] = useState([])
 
-  useEffect(() => {
-    fetch('http://localhost:8800/api/gigs/?cat=animation&max=' + max)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setData(data)
-        // logs the last 5 documents retrieved from the database
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [])
+  // useEffect(() => {
+  //   fetch('http://localhost:8800/api/gigs/?cat=animation&max=' + max)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       setData(data)
+  //       // logs the last 5 documents retrieved from the database
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, [])
   return (
     <div className='gigs'>
       <div className="container">
-        <span className='breadCrumbs'>beCreator Lifystyle Vlogging </span>
+        
         <h1>Creators</h1>
         <p>Explore beCreator exclusive range of artists </p>
         <div className="menu">
@@ -70,7 +70,7 @@ export const Gigs = () => {
             <input type="text" placeholder='max' value={max} onChange={(e) => { setMax(e.target.value) }} />
             <button onClick={filter}>Apply</button>
           </div>
-          <div className="right">
+          {/* <div className="right">
             <span className="sortBy">Sort By</span>
             <span className="sortType">{sort === "revenue" ? "Revenue" : "Newest"}</span>
             <img src="./img/down.png" alt="" onClick={() => { setOpen(!open) }} />
@@ -79,7 +79,7 @@ export const Gigs = () => {
                 (<span onClick={() => { reSort("createdAt") }}>Newest</span>) :
                 (<span onClick={() => { reSort("revenue") }}>Revenue</span>)}
             </div>}
-          </div>
+          </div> */}
 
 
         </div>

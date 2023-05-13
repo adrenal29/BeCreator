@@ -28,6 +28,7 @@ import League from "./pages/CreatorLeague/League";
 import Raise from "./pages/add/Raise";
 import Create from "./components/League/Create";
 import Signup from "./pages/signup/Signup";
+import Meet from "./pages/meet/Meet";
 function App() {
   const queryClient = new QueryClient();
   const Layout=()=>{
@@ -95,6 +96,7 @@ function App() {
           path:'/signup',
           element:<Signup/>
         },
+        
         {
           path:'/business',
           element:<Business/>
@@ -107,6 +109,10 @@ function App() {
     },{
       path:"/league",
       element:<League/>
+    },
+    {
+      path:'/meet',
+      element:<Meet/>
     }
   ]);
 

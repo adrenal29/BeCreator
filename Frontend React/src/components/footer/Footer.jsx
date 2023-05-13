@@ -51,25 +51,13 @@ export const Footer=()=> {
             <span>Become a Seller</span>
             <span>Community Standards</span>
           </div>
-          <div className="item">
-            <h2>More From Fiverr</h2>
-            <span>Fiverr Business</span>
-            <span>Fiverr Pro</span>
-            <span>Fiverr Logo Maker</span>
-            <span>Fiverr Guides</span>
-            <span>Get Inspired</span>
-            <span>Fiverr Select</span>
-            <span>ClearVoice</span>
-            <span>Fiverr Workspace</span>
-            <span>Learn</span>
-            <span>Working Not Working</span>
-          </div>
+
         </div>
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>fiverr</h2>
-            <span>© Fiverr International Ltd. 2023</span>
+            <h2>beCreator</h2>
+            <span>© beCreator</span>
           </div>
           <div className="right">
             <div className="social">

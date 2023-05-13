@@ -24,6 +24,7 @@
     .panels{
         display: flex;
         justify-content: space-evenly;
+        flex-wrap: wrap;
     }
 }
 hr{
@@ -37,7 +38,7 @@ hr{
     margin-left: 5%;
     margin-top: 1%;
 }
-.list{
+.listP{
     margin-left: 10%;
     width: 80%;
     margin-top: 2%;

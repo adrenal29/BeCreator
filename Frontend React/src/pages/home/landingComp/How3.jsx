@@ -25,14 +25,14 @@ const How3 = () => {
                         
                                 <img class="" src='/img/f2.png'  />
                 
-                        <h2 class="">analyse and push content</h2>
+                        <h2 class="">Raise Investment</h2>
 
                     </div>
 
                     <div class="step3 step">
 
                                 <img class="" src='/img/f3.png'  />
-                        <h2 class="">engage</h2>
+                        <h2 class="">Manage Brand deals</h2>
 
                     </div>
 
@@ -40,7 +40,7 @@ const How3 = () => {
                     <div class="step4 step">
                         
                                 <img class="" src='/img/f3.png'  />
-                        <h2 class="">raise fund</h2>
+                        <h2 class="">Enagage in league</h2>
                     </div>
 
 

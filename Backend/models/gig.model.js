@@ -5,15 +5,17 @@ const GigSchema = new Schema(
   {
     userId: {
       type: String,
-      required: true,
+    },
+    username:{
+      type:String,
+    
     },
     title: {
       type: String,
-      required: true,
+    
     },
     desc: {
       type: String,
-      required: true,
     },
     totalStars: {
       type: Number,
@@ -25,43 +27,42 @@ const GigSchema = new Schema(
     },
     cat: {
       type: String,
-      required: true,
+
     },
     price: {
       type: Number,
-      required: true,
+
     },
     cover: {
       type: String,
-      required: true,
+
     },
     images: {
       type: [String],
       required: false,
     },
-    shortTitle: {
-      type: String,
-      required: true,
-    },
-    shortDesc: {
+    channel: {
       type: String,
     },
-    deliveryTime: {
+    vestingTime: {
       type: Number,
-      required: true,
     },
-    revisionNumber: {
+    revenue: {
       type: Number,
-      required: true,
+     
     },
     features: {
       type: [String],
       required: false,
     },
-    sales: {
+    max: {
       type: Number,
       default: 0,
     },
+    investors:{
+      type:Array,
+      default:[]
+    }
   },
   {
     timestamps: true,

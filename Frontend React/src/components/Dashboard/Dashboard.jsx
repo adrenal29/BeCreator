@@ -16,7 +16,7 @@ const Dashboard = (props) => {
     const [views,setViews]=useState(0);
     const [revenue,setRevenue]=useState(1000);
     const apiKey = 'AIzaSyCA1TMCgzzGYcNwEOGmQJ9C-R-DJvalCAY';
-
+    
     // Specify the username of the channel you want to retrieve data for
     const channelid = 'UC6QEol2rdaqKce4VcTZ2JEg';
     useEffect(() => {
@@ -33,6 +33,8 @@ const Dashboard = (props) => {
             .catch(error => {
                 console.error(error);
             });
+
+            
     }, [])
     const [activeTab, setActiveTab] = React.useState('home');
     console.log(props.auth)
@@ -80,7 +82,7 @@ const Dashboard = (props) => {
                     <FaChartLine />
                     <span>Analytics</span>
                 </div>
-                <div
+                {/* <div
                     className={`tab ${activeTab === 'pfm' ? 'active' : ''}`}
                     onClick={() => handleTabClick('pfm')}
                 >
@@ -93,7 +95,7 @@ const Dashboard = (props) => {
                 >
                     <FaChartLine />
                     <span>Credit Card</span>
-                </div>
+                </div> */}
                 <div
                     className={`tab ${activeTab === 'brand' ? 'active' : ''}`}
                     onClick={() => handleTabClick('brand')}

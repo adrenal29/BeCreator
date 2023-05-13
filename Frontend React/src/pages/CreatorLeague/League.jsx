@@ -11,7 +11,7 @@ const League = () => {
     const [league,setLeague]=useState('League Name');
     const [max,setMax]=useState(0);
     useEffect(() => {
-        fetch('http://localhost:8800/api/league/leagues')
+        fetch('http://34.131.221.158:8800/api/league/leagues')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -47,7 +47,7 @@ const League = () => {
             <div className="leagueDetails">
                 <Detail name={league} limit={max} />
             </div>
-            <div className="list">
+            <div className="listP">
                 {leagueCreators.map(player=> (
 
                     <Player player={player} />
