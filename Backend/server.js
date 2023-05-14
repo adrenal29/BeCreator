@@ -18,7 +18,8 @@ dotenv.config();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:"http://34.131.71.8/",credentials:true}));
+// app.use(cors({origin:"http://34.131.71.8/",credentials:true}));
+res.setHeader('Access-Control-Allow-Origin', '');
 
 // Set the Access-Control-Allow-Origin header to allow cross-origin requests from any domain
 // app.use((req, res, next) => {
