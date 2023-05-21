@@ -19,7 +19,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 // app.use(cors({origin:"http://34.131.71.8/",credentials:true}));
-app.use(cors({origin: 'https://splendid-manatee-4b591b.netlify.app/', credentials: true}));
+app.use(cors({origin: 'https://splendid-manatee-4b591b.netlify.app', credentials: true}));
 
 
 // Set the Access-Control-Allow-Origin header to allow cross-origin requests from any domain
