@@ -20,7 +20,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://34.131.221.158:8800/api/auth/login", { username, pwd }, { withCredentials: true });
+      const res = await axios.post("https://becreator-production.up.railway.app/api/auth/login", { username, pwd }, { withCredentials: true });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       navigate("/")
       console.log(res.data)

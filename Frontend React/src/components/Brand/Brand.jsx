@@ -11,7 +11,7 @@ const Brand = () => {
         console.log(userData)
         setUser(userData)
       
-        fetch('http://34.131.221.158:8800/api/proposal/')
+        fetch('https://becreator-production.up.railway.app/api/proposal/')
             .then(response => response.json())
             .then(data => {
                 console.log(data);

@@ -11,7 +11,7 @@ const League = () => {
     const [league,setLeague]=useState('League Name');
     const [max,setMax]=useState(0);
     useEffect(() => {
-        fetch('http://34.131.221.158:8800/api/league/leagues')
+        fetch('https://becreator-production.up.railway.app/api/league/leagues')
             .then(response => response.json())
             .then(data => {
                 console.log(data);

@@ -10,7 +10,7 @@ const Analytics = () => {
     console.log(userData.username)
     setUser(userData.username)
    
-    fetch('http://34.131.221.158:8800/api/gigs/mygigs?username='+user)
+    fetch('https://becreator-production.up.railway.app/api/gigs/mygigs?username='+user)
       .then(response => response.json())
       .then(data => {
         console.log(data);

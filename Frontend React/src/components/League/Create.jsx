@@ -45,7 +45,7 @@ const Create = () => {
     document.body.classList.remove('modal-open');
   }
   const getCreators = () => {
-    fetch('http://34.131.221.158:8800/api/gigs?cat=' + cat)
+    fetch('https://becreator-production.up.railway.app/api/gigs?cat=' + cat)
       .then(response => response.json())
       .then(data => {
         console.log(data);

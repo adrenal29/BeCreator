@@ -9,7 +9,7 @@ export const Slide = () => {
     const [cData,setData]=useState(cards)
     console.log(cards)
     useEffect(()=>{
-        fetch('http://34.131.221.158:8800/api/users/latest/5')
+        fetch('https://becreator-production.up.railway.app/api/users/latest/5')
         .then(response => response.json())
         .then(data => {
             console.log(data);

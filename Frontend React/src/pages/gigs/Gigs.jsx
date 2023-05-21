@@ -14,7 +14,7 @@ export const Gigs = () => {
   const [max, setMax] = useState(10000);
   const [min, setMin] = useState(0);
   useEffect(()=>{
-    fetch('http://34.131.221.158:8800/api/gigs/?cat='+cat)
+    fetch('https://becreator-production.up.railway.app/api/gigs/?cat='+cat)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -27,7 +27,7 @@ export const Gigs = () => {
   },[])
   const filter = () => {
     console.log(max)
-    fetch('http://34.131.221.158:8800/api/gigs/?cat='+cat+'&max=' + max+'&min='+min)
+    fetch('https://becreator-production.up.railway.app/api/gigs/?cat='+cat+'&max=' + max+'&min='+min)
       .then(response => response.json())
       .then(data => {
         console.log(data);

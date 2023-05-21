@@ -12,7 +12,7 @@ export const Gig = () => {
     const queryParams = url.searchParams;
     let id = queryParams.get("id")
     console.log(id)
-    fetch('http://34.131.221.158:8800/api/gigs/single?id=' + id)
+    fetch('https://becreator-production.up.railway.app/api/gigs/single?id=' + id)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -28,7 +28,7 @@ export const Gig = () => {
   }, [])
 
   const handlePayment = async () => {
-    const response = await fetch('http://34.131.221.158:8800/api/payment/order', {
+    const response = await fetch('https://becreator-production.up.railway.app/api/payment/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
