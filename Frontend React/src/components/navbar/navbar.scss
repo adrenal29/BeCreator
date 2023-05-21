@@ -21,7 +21,11 @@
             .text {
 
             }
-
+            img{
+                height: 2rem;
+                width: 2rem;
+                display: none;
+            }
             .dot {
                 color: #1dbf73;
             }
@@ -98,4 +102,63 @@
         color: gray;
         font-family: "Montserrat",sans-serif;
     }
+}
+
+@media screen and (max-width: 760px){
+    .navbar{
+        .container{
+            width: 100%;
+            flex-direction: column;
+            .logo{
+                font-size: 34px;
+                font-weight: bold;
+                margin-left: 10vw;
+                img{
+                    display:block;
+                    margin-left: 80vw;
+                    margin-top: -7vh;
+                    margin-right: 5vw;   
+                }
+               .text{
+                color: black;
+               
+               }
+            }
+            .open{
+                display: none;
+            }
+        }
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+            height: auto;
+          }
+          .logo {
+            margin: 20px 0;
+           
+          }
+          .links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 20px 0;
+          }
+          .links span {
+            margin: 10px 0;
+          }
+          .user {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 20px;
+          }
+          .options {
+            margin: 10px 0;
+          }
+          .options a {
+            display: block;
+            margin: 10px 0;
+          }
+    }
+    
 }

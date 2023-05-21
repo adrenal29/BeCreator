@@ -278,3 +278,20 @@
         }
     }
 }
+
+@media screen and (max-width:760px) {
+    .gig{
+        flex-direction: column;
+        width: 100%;
+    .container{
+        flex-direction: column;
+        width: 100%;
+        .left{
+            h2{
+                margin-left: 10%;
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+}

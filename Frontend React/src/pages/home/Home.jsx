@@ -9,7 +9,7 @@ export const Home = () => {
     <div>
       <Featured/>
       <How3/>
-      <h2>Invest in our Creators</h2>
+      <h2 className='head'>Invest in our Creators</h2>
       <Slide/>
       <Explore/>
     </div>

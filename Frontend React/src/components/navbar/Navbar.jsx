@@ -6,12 +6,15 @@ import newRequest from '../../utils/newRequest'
 export const Navbar = () => {
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
+  const [opt,openOpt]=useState(false);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   }
-  
+  const menu=()=>{
+    openOpt(!opt);
+  }
   useEffect(() => {
     window.addEventListener("scroll", isActive)
     return () => {
@@ -57,8 +60,9 @@ export const Navbar = () => {
             <span className='text'>beCreator</span>
             <span className='dot'>.</span>
           </Link>
+          <img src="/img/menu.jpg" onClick={menu} alt="" />
         </div>
-        <div className="links">
+        <div className={opt?"open":"links"}  >
           <span><Link to='/business' className='link'>Business</Link></span>
           <span><Link to='/league' className='link'>League</Link></span>
           <span>English</span>

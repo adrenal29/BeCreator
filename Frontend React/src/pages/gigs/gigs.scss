@@ -82,3 +82,14 @@
         }
     }
 }
+
+@media screen and (max-width:760px) {
+    .gigs{
+        .container{
+            width: 100%;
+            .menu{
+                width: 100%;
+            }
+        }
+    }
+}

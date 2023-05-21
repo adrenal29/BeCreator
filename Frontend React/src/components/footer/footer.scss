@@ -70,3 +70,29 @@
     }
   }
   
+  @media screen and (max-width: 760px) {
+    .footer{
+      width: 100vw;
+      .container{
+        width: 100vw;
+        .top{
+          width: 100vw;
+          flex-direction: column;
+         .item{
+          padding-left: 10%;
+         }
+        }
+        .bottom{
+         width: 100%;
+         .left{
+          margin-left: -60%;
+         }
+         .right{
+          flex-direction: column;
+         }
+         flex-direction: column;
+        }
+      }
+    }
+
+}

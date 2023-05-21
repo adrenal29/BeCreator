@@ -1,7 +1,9 @@
 .landing {
     display: flex;
+
     .text {
         width: 50%;
+
         h2 {
             margin: 20%;
             font-size: 50px;
@@ -10,8 +12,9 @@
             line-height: 4rem;
             font-family: Proxima Nova;
         }
-        h3{
-            margin-left:21%;
+
+        h3 {
+            margin-left: 21%;
             margin-top: -15%;
             font-weight: 500;
         }
@@ -22,4 +25,45 @@
             height: 80vh;
         }
     }
+}
+
+@media screen and (max-width: 760px) {
+    .featured {
+        margin-top: 8%;
+        .landing {
+            .text {
+                width: 100vw;
+                margin: 0;
+
+                h2 {
+                    text-align: center;
+                    margin:10% 10%;
+                    font-size: 2.5rem;
+                    line-height: 2.5rem;
+                    
+                }
+
+                h3 {
+                    margin: 0;
+                    text-align: center;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .img {
+                width: 100vw;
+                 margin-top: 10%;
+                img {
+                    width: 100%;
+                    height:60%;
+                    
+                }
+
+            
+            }
+
+            flex-direction: column;
+        }
+    }
+
 }

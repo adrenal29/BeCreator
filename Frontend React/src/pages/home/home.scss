@@ -5,3 +5,12 @@ h2{
     font-size: 50px;
     font-family: bold;
 }
+@media screen and (max-width:760px) {
+    .head{
+        margin-top: 10%;
+        font-size: 1.6rem;
+        width: 80%;
+        margin-left: 10%;
+        text-align: center;
+    }
+}

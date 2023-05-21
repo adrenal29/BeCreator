@@ -44,3 +44,27 @@
         }
     }
 }
+
+@media screen and (max-width:760px) {
+    .explore{
+        h2{
+            font-size: 1.5rem;
+            margin-left: 20%;
+        }
+        .content{
+            flex-direction: column;
+            .img{
+                width: 100%;
+            }
+            .text{
+                width: 100%;
+                .option{
+                    h3{
+                        font-size: 1.2rem;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+}

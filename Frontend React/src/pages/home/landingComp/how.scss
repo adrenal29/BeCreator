@@ -40,3 +40,31 @@
         }
     }
 }
+
+@media screen and (max-width:760px) {
+    .how{
+        height: 100%;
+        .text{
+            margin-right: 30vw;
+            h1{
+                font-size: 1.4rem;
+                margin: 15% 30%;
+                width: 100%;
+            }
+            p{
+                width: 100%;
+                margin: 15% 20%;
+                text-align: center;
+            }
+        }
+    }
+    .steps{
+        flex-direction: column;
+        .step{
+            width: 60%;
+            height: 60%;
+            margin-top: 10%;
+            margin-left: 20%;
+        }
+    }
+}
