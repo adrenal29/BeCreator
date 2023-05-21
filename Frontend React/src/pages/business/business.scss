@@ -102,3 +102,23 @@
         }
     }
 }
+@media screen and (max-width:760px) {
+    .business{
+        flex-direction: column;
+        .left{
+            width: 100%;
+        }
+        .bcontainer{
+            width: 80%;
+            margin-left: 10%;
+            .contact{
+                width: 100%;
+            }
+            button{
+                margin-left: 20%;
+            }
+        }
+        
+    }
+    
+}
